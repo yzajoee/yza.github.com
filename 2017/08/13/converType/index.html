@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | Hexo</title>
+  <title>converType | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
+<meta name="keywords" content="javascript 基础 类型转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/08/12/hello-world/index.html">
+<meta property="og:title" content="converType">
+<meta property="og:url" content="http://yoursite.com/2017/08/13/converType/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-08-12T01:10:36.931Z">
+<meta property="og:updated_time" content="2017-08-13T08:13:03.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="converType">
+<meta name="twitter:description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,35 +155,154 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-converType" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      converType
     </h1>
   
 
         
-        <a href="/yza.github.com/2017/08/12/hello-world/" class="archive-article-date">
-  	<time datetime="2017-08-12T01:10:36.931Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
+        <a href="/yza.github.com/2017/08/13/converType/" class="archive-article-date">
+  	<time datetime="2017-08-13T03:00:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>不久前笔试有一个题目是这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == []</div></pre></td></tr></table></figure></p>
+<p>咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == !![]</div></pre></td></tr></table></figure></p>
+<p>知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重要性！！！<br><a id="more"></a></p>
+<h1 id="类型转换规则"><a href="#类型转换规则" class="headerlink" title="类型转换规则"></a>类型转换规则</h1><p>在js中，总的来说数据类型分为两大类，一类是原始值类型的，一类是引用类型的。原始值类型的包括：字符串(String) 、数字(Number) 、布尔值(Boolean) 以及两个特殊的值 null 和 undefined 。<br>各种数值的转换规则如下：</p>
+<h2 id="转换为布尔值"><a href="#转换为布尔值" class="headerlink" title="转换为布尔值"></a>转换为布尔值</h2><ol>
+<li>除了正负0和NaN会转换为false外，其它数值转换为true</li>
+<li>除了空字符串’’外，其它字符串均转为true，包括’0’、’false’</li>
+<li>其它类型</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">undefined</th>
+<th style="text-align:center">null</th>
+<th style="text-align:center">true</th>
+<th>false</th>
+<th>new Object()</th>
+<th>function(){return;}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">false</td>
+<td style="text-align:center">false</td>
+<td style="text-align:center">true</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>任何对象都会转换为true，包括Array，正则和function，Date等<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var obj = new Boolean(false);</div><div class="line">alert(obj); // 转换为字符串false</div><div class="line">alert(!!obj); // 转换为布尔值，结果是true</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="转化为数字"><a href="#转化为数字" class="headerlink" title="转化为数字"></a>转化为数字</h2><ol>
+<li>除了空字符会被转换为0意外，如果字符串中是正确的数字书写形式，那么都可以顺利转换成相应的数字，不管是小数、科学计数还是八进制、十六进制形式等。但是如果参杂了其他不能构成数字或不符合数字书写规则的东西，则会被转换成NaN。<blockquote>
+<p>注意<code>NaN == NaN =&gt; false</code>，NaN和任何数字的运算结果都是NaN。</p>
+</blockquote>
+</li>
+<li>其它类型转换为数字</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">undefined</th>
+<th style="text-align:center">null</th>
+<th style="text-align:center">true</th>
+<th>false</th>
+<th>new Object()</th>
+<th>function(){return;}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">NaN</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>数组转化为数字，会先转换为字符串，然后在转换为数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">console.log(+[]); // 0</div><div class="line">console.log(+1); // 1</div><div class="line">console.log(+[1, 2]); // NaN</div><div class="line">console.log(+new Array(1)); // 0 注意，Array的构造函数中，传入一个参数的时候，该参数是数组的size，传入多个参数时候，多个参数就分别是数组的多个成员</div><div class="line">console.log(+new Array(1, 2)); // NaN</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="转化为字符串"><a href="#转化为字符串" class="headerlink" title="转化为字符串"></a>转化为字符串</h2><ol>
+<li>数值会按原样转化为字符串，123e-2转换为字符串为’1.23’，+-Infinity转换为字符串为’+-Infinity’，NaN转换为字符串为’NaN’。</li>
+<li>其它类型转化为字符串</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">undefined</th>
+<th style="text-align:center">null</th>
+<th style="text-align:center">true</th>
+<th>false</th>
+<th>new Object()</th>
+<th>function(){return;}</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">‘undefined’</td>
+<td style="text-align:center">‘null’</td>
+<td style="text-align:center">‘true’</td>
+<td>‘false’</td>
+<td>‘[Object object]’</td>
+<td>‘function(){return;}’</td>
+</tr>
+</tbody>
+</table>
+<p>当对象或函数转换成字符串的时候，会调用它们的toString()方法进行默认转换，默认的是Object.prototyep.toString()和 Function.prototype.toString,但它们是可以被我们自定义的toString方法覆盖的。当把一个函数转换成一个字符串时，不一定就要显示函数的源代码，Function.prototype.toString 方法的结果依赖于它的环境是怎么实现它的。</p>
+<h2 id="二元运算符对数据类型转换的规则"><a href="#二元运算符对数据类型转换的规则" class="headerlink" title="二元运算符对数据类型转换的规则"></a>二元运算符对数据类型转换的规则</h2><ol>
+<li><p>不同类型的基础数据之间的加法，如果没有加法两侧没有字符串，数据先转换为number，然后转换为string，如果有string类型数据参与运算，则把另一侧的数据转换为字符串再相加拼接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">undefined + null //=&gt; NaN + 0 =&gt; NaN</div><div class="line">null + false // =&gt; 0 + 0 =&gt; 0</div><div class="line">1 + true =&gt; 1 + 1 =&gt; 2</div><div class="line">1 + &apos;1&apos; // &apos;11&apos;;数字与字符串相加的加过为字符串</div><div class="line">1 + 2 + &apos;3&apos; // &apos;33&apos;</div><div class="line">1 + (2 + &apos;3&apos;) // &apos;123&apos;</div><div class="line">&apos;s&apos; + null // &apos;snull&apos;</div><div class="line">&apos;s&apos; + undefined // &apos;sundefined&apos;</div><div class="line">&apos;s&apos; + true // &apos;true&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>对象参与的加减法运算，先转化为基础类型。</p>
+<blockquote>
+<p>对象转化为基础数据类型，先调用valueOf方法，如果不是返回基础数据类型，在调用器toString方法，如果返回的还不是基础数据类型，则抛出异常。如果对象是Date实例，则先执行toString方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">[1,2] + [3] // 1,23</div><div class="line"></div><div class="line">//为了便于观察重写Date的toString方法和valueOf方法 </div><div class="line"></div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line">    return 1; </div><div class="line">&#125; </div><div class="line"></div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line"></div><div class="line">    return 2; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var a = new Date, </div><div class="line">    b = new Date; </div><div class="line"></div><div class="line">a + b; // 调用toString，1 + 1，结果是2 </div><div class="line"></div><div class="line">// 再重写toString方法 </div><div class="line"></div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line"></div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var c = new Date, </div><div class="line">    d = new Date; </div><div class="line"></div><div class="line">c + d; // 调用toString方法返回的不是基础类型，再调用valueOf，2 + 2，结果是4 </div><div class="line"></div><div class="line">// 再重写valueOf方法 </div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line"></div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var e = new Date, </div><div class="line">    f = new Date; </div><div class="line"></div><div class="line">e + f; // 报错</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>加法运算符一定有左右两个运算子，如果只有右边一个运算子，就是另一个运算符，叫做“数值运算符”。数值运算符用于返回右边云算子的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+-3 // 等同于 +(-3)</div><div class="line">+&apos;1&apos; + 1  // 2</div><div class="line">+&apos;S&apos; + 3 // NaN</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ol>
+<li>其它二元运算符则是把数据类型都转化为数字再作运算<br>由于加法运算符与其他算术运算符的这种差异，会导致一些意想不到的结果，计算时要小心。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var now = new Date();</div><div class="line">typeof (now + 1) // &quot;string&quot;</div><div class="line">typeof (now - 1) // &quot;number&quot;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="相等运算符数据转换规则"><a href="#相等运算符数据转换规则" class="headerlink" title="相等运算符数据转换规则"></a>相等运算符数据转换规则</h2><ol>
+<li>原始数据类型会转化为数值类型在进行比较。</li>
+<li>对象（广义对象，包括数值和函数）与原始类型比较时，对象转化成原始数据类型在进行比较。</li>
+<li>undefined 和 null<br>undefined 和 null 与其它类型的只比较时，结果都是false, 它们的相互比较结果是true</li>
+<li>相等运算符的缺点<br>相反运算符隐藏的类型转换，会带来一些违反直觉的结果。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&apos;&apos; == &apos;0&apos; // false</div><div class="line">0 == &apos;&apos; // true</div><div class="line">0 == &apos;0&apos; // true</div><div class="line"></div><div class="line">false == &apos;false&apos; // 0 === 1 = false</div><div class="line">false === &apos;0&apos; // 0 === 0 = true</div><div class="line"></div><div class="line">false == undefined // false</div><div class="line">false == null // false</div><div class="line">null == undefined // true</div><div class="line"></div><div class="line">&apos;\t\r\n&apos; == 0 // true 字符串转化为数值时，忽略前后的空格，前者转为数值时候等于0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>相等运算符会执行对象中的valueOf和toString方法，如果用户对这两个方法进行了重新定义，可能会导致不可预估的错误。</p>
+</blockquote>
+<h1 id="回到引言中的题目"><a href="#回到引言中的题目" class="headerlink" title="回到引言中的题目"></a>回到引言中的题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == !![]</div></pre></td></tr></table></figure>
+<p>按照运算顺序，会先执行!![]，由于对象转化为布尔值都是true，所以结果等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == true</div></pre></td></tr></table></figure></p>
+<p>对象和原始数据类型进行比较的时候，会转化为原始数据类型，等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[].toString() == true  // 结果是 &apos;&apos; == true</div></pre></td></tr></table></figure></p>
+<p>原始数据类型转换为数值在进行比较，答案就呼之欲出了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 == 1</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考文章：<a href="http://www.cnblogs.com/2050/archive/2012/08/17/2644189.html" target="_blank" rel="external">javascript中数据类型转换那些事</a><br><a href="https://www.zhihu.com/question/29615998" target="_blank" rel="external">javascript: [] == ![]; // true 答案为什么会是true?</a><br><a href="http://javascript.ruanyifeng.com/grammar/operator.html#toc6" target="_blank" rel="external">运算符</a></p>
+</blockquote>
 
       
 
@@ -212,6 +332,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">javascript 基础 类型转换</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -262,7 +393,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/12/hello-world/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/13/converType/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,6 +405,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/yza.github.com/2017/08/12/demoOne/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">工作一年后的反思</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -390,6 +531,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript 基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随想 前端生涯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">javascript 基础 类型转换</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
