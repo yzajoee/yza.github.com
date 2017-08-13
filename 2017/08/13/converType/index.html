@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>converType | Hexo</title>
+  <title>一道笔试题引起的数据类型转换的思考 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
 <meta name="keywords" content="javascript 基础 类型转换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="converType">
+<meta property="og:title" content="一道笔试题引起的数据类型转换的思考">
 <meta property="og:url" content="http://yoursite.com/2017/08/13/converType/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2017-08-13T08:13:03.790Z">
+<meta property="og:updated_time" content="2017-08-13T08:32:12.594Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="converType">
+<meta name="twitter:title" content="一道笔试题引起的数据类型转换的思考">
 <meta name="twitter:description" content="引言不久前笔试有一个题目是这样的1[] == [] 咋一看以为是true，但细想后给面试官的答案是false，因为引用类型在内存栈里面保存的是值的地址而不是值本身，两个不同的数组器地址是不一致的，后面面试官引出了另外一个题目1[] == !![] 知识后我回答是true，那时候没细想，然后又记不清楚空数组的强制类型转换是什么，所以这道题答得很糟糕，事实上答案是false，这里我再次强调一下基础的重">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -162,7 +162,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      converType
+      一道笔试题引起的数据类型转换的思考
     </h1>
   
 
@@ -239,8 +239,9 @@
 </tbody>
 </table>
 <blockquote>
-<p>数组转化为数字，会先转换为字符串，然后在转换为数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">console.log(+[]); // 0</div><div class="line">console.log(+1); // 1</div><div class="line">console.log(+[1, 2]); // NaN</div><div class="line">console.log(+new Array(1)); // 0 注意，Array的构造函数中，传入一个参数的时候，该参数是数组的size，传入多个参数时候，多个参数就分别是数组的多个成员</div><div class="line">console.log(+new Array(1, 2)); // NaN</div></pre></td></tr></table></figure></p>
+<p>数组转化为数字，会先转换为字符串，然后在转换为数字</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">console.log(+[]); // 0</div><div class="line">console.log(+1); // 1</div><div class="line">console.log(+[1, 2]); // NaN</div><div class="line">console.log(+new Array(1)); // 0 注意，Array的构造函数中，传入一个参数的时候，该参数是数组的size，传入多个参数时候，多个参数就分别是数组的多个成员</div><div class="line">console.log(+new Array(1, 2)); // NaN</div></pre></td></tr></table></figure>
 <h2 id="转化为字符串"><a href="#转化为字符串" class="headerlink" title="转化为字符串"></a>转化为字符串</h2><ol>
 <li>数值会按原样转化为字符串，123e-2转换为字符串为’1.23’，+-Infinity转换为字符串为’+-Infinity’，NaN转换为字符串为’NaN’。</li>
 <li>其它类型转化为字符串</li>
@@ -268,24 +269,17 @@
 </tbody>
 </table>
 <p>当对象或函数转换成字符串的时候，会调用它们的toString()方法进行默认转换，默认的是Object.prototyep.toString()和 Function.prototype.toString,但它们是可以被我们自定义的toString方法覆盖的。当把一个函数转换成一个字符串时，不一定就要显示函数的源代码，Function.prototype.toString 方法的结果依赖于它的环境是怎么实现它的。</p>
-<h2 id="二元运算符对数据类型转换的规则"><a href="#二元运算符对数据类型转换的规则" class="headerlink" title="二元运算符对数据类型转换的规则"></a>二元运算符对数据类型转换的规则</h2><ol>
-<li><p>不同类型的基础数据之间的加法，如果没有加法两侧没有字符串，数据先转换为number，然后转换为string，如果有string类型数据参与运算，则把另一侧的数据转换为字符串再相加拼接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">undefined + null //=&gt; NaN + 0 =&gt; NaN</div><div class="line">null + false // =&gt; 0 + 0 =&gt; 0</div><div class="line">1 + true =&gt; 1 + 1 =&gt; 2</div><div class="line">1 + &apos;1&apos; // &apos;11&apos;;数字与字符串相加的加过为字符串</div><div class="line">1 + 2 + &apos;3&apos; // &apos;33&apos;</div><div class="line">1 + (2 + &apos;3&apos;) // &apos;123&apos;</div><div class="line">&apos;s&apos; + null // &apos;snull&apos;</div><div class="line">&apos;s&apos; + undefined // &apos;sundefined&apos;</div><div class="line">&apos;s&apos; + true // &apos;true&apos;</div></pre></td></tr></table></figure>
-</li>
-<li><p>对象参与的加减法运算，先转化为基础类型。</p>
+<h2 id="二元运算符对数据类型转换的规则"><a href="#二元运算符对数据类型转换的规则" class="headerlink" title="二元运算符对数据类型转换的规则"></a>二元运算符对数据类型转换的规则</h2><p>1.不同类型的基础数据之间的加法，如果没有加法两侧没有字符串，数据先转换为number，然后转换为string，如果有string类型数据参与运算，则把另一侧的数据转换为字符串再相加拼接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">undefined + null //=&gt; NaN + 0 =&gt; NaN</div><div class="line">null + false // =&gt; 0 + 0 =&gt; 0</div><div class="line">1 + true =&gt; 1 + 1 =&gt; 2</div><div class="line">1 + &apos;1&apos; // &apos;11&apos;;数字与字符串相加的加过为字符串</div><div class="line">1 + 2 + &apos;3&apos; // &apos;33&apos;</div><div class="line">1 + (2 + &apos;3&apos;) // &apos;123&apos;</div><div class="line">&apos;s&apos; + null // &apos;snull&apos;</div><div class="line">&apos;s&apos; + undefined // &apos;sundefined&apos;</div><div class="line">&apos;s&apos; + true // &apos;true&apos;</div></pre></td></tr></table></figure></p>
+<p>2.对象参与的加减法运算，先转化为基础类型。</p>
 <blockquote>
 <p>对象转化为基础数据类型，先调用valueOf方法，如果不是返回基础数据类型，在调用器toString方法，如果返回的还不是基础数据类型，则抛出异常。如果对象是Date实例，则先执行toString方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">[1,2] + [3] // 1,23</div><div class="line"></div><div class="line">//为了便于观察重写Date的toString方法和valueOf方法 </div><div class="line"></div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line">    return 1; </div><div class="line">&#125; </div><div class="line"></div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line"></div><div class="line">    return 2; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var a = new Date, </div><div class="line">    b = new Date; </div><div class="line"></div><div class="line">a + b; // 调用toString，1 + 1，结果是2 </div><div class="line"></div><div class="line">// 再重写toString方法 </div><div class="line"></div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line"></div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var c = new Date, </div><div class="line">    d = new Date; </div><div class="line"></div><div class="line">c + d; // 调用toString方法返回的不是基础类型，再调用valueOf，2 + 2，结果是4 </div><div class="line"></div><div class="line">// 再重写valueOf方法 </div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line"></div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line"></div><div class="line">var e = new Date, </div><div class="line">    f = new Date; </div><div class="line"></div><div class="line">e + f; // 报错</div></pre></td></tr></table></figure>
 </blockquote>
-</li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[1,2] + [3] // 1,23</div><div class="line">//为了便于观察重写Date的toString方法和valueOf方法 </div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line">    return 1; </div><div class="line">&#125; </div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line"></div><div class="line">    return 2; </div><div class="line">&#125; </div><div class="line">var a = new Date, </div><div class="line">    b = new Date; </div><div class="line">a + b; // 调用toString，1 + 1，结果是2 </div><div class="line">// 再重写toString方法 </div><div class="line">Date.prototype.toString = function()&#123; </div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line">var c = new Date, </div><div class="line">    d = new Date; </div><div class="line">c + d; // 调用toString方法返回的不是基础类型，再调用valueOf，2 + 2，结果是4 </div><div class="line">// 再重写valueOf方法 </div><div class="line">Date.prototype.valueOf = function()&#123; </div><div class="line">    return &#123;&#125;; </div><div class="line">&#125; </div><div class="line">var e = new Date, </div><div class="line">    f = new Date; </div><div class="line">e + f; // 报错</div></pre></td></tr></table></figure>
 <blockquote>
-<p>加法运算符一定有左右两个运算子，如果只有右边一个运算子，就是另一个运算符，叫做“数值运算符”。数值运算符用于返回右边云算子的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+-3 // 等同于 +(-3)</div><div class="line">+&apos;1&apos; + 1  // 2</div><div class="line">+&apos;S&apos; + 3 // NaN</div></pre></td></tr></table></figure></p>
+<p>加法运算符一定有左右两个运算子，如果只有右边一个运算子，就是另一个运算符，叫做“数值运算符”。数值运算符用于返回右边云算子的值。</p>
 </blockquote>
-<ol>
-<li>其它二元运算符则是把数据类型都转化为数字再作运算<br>由于加法运算符与其他算术运算符的这种差异，会导致一些意想不到的结果，计算时要小心。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var now = new Date();</div><div class="line">typeof (now + 1) // &quot;string&quot;</div><div class="line">typeof (now - 1) // &quot;number&quot;</div></pre></td></tr></table></figure>
-</li>
-</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+-3 // 等同于 +(-3)</div><div class="line">+&apos;1&apos; + 1  // 2</div><div class="line">+&apos;S&apos; + 3 // NaN</div></pre></td></tr></table></figure>
+<p>3.其它二元运算符则是把数据类型都转化为数字再作运算<br>由于加法运算符与其他算术运算符的这种差异，会导致一些意想不到的结果，计算时要小心。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var now = new Date();</div><div class="line">typeof (now + 1) // &quot;string&quot;</div><div class="line">typeof (now - 1) // &quot;number&quot;</div></pre></td></tr></table></figure></p>
 <h2 id="相等运算符数据转换规则"><a href="#相等运算符数据转换规则" class="headerlink" title="相等运算符数据转换规则"></a>相等运算符数据转换规则</h2><ol>
 <li>原始数据类型会转化为数值类型在进行比较。</li>
 <li>对象（广义对象，包括数值和函数）与原始类型比较时，对象转化成原始数据类型在进行比较。</li>
@@ -299,9 +293,14 @@
 <h1 id="回到引言中的题目"><a href="#回到引言中的题目" class="headerlink" title="回到引言中的题目"></a>回到引言中的题目</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == !![]</div></pre></td></tr></table></figure>
 <p>按照运算顺序，会先执行!![]，由于对象转化为布尔值都是true，所以结果等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[] == true</div></pre></td></tr></table></figure></p>
 <p>对象和原始数据类型进行比较的时候，会转化为原始数据类型，等同于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[].toString() == true  // 结果是 &apos;&apos; == true</div></pre></td></tr></table></figure></p>
-<p>原始数据类型转换为数值在进行比较，答案就呼之欲出了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 == 1</div></pre></td></tr></table></figure></p>
+<p>原始数据类型转换为数值再进行比较，答案就呼之欲出了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0 == 1</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>参考文章：<a href="http://www.cnblogs.com/2050/archive/2012/08/17/2644189.html" target="_blank" rel="external">javascript中数据类型转换那些事</a><br><a href="https://www.zhihu.com/question/29615998" target="_blank" rel="external">javascript: [] == ![]; // true 答案为什么会是true?</a><br><a href="http://javascript.ruanyifeng.com/grammar/operator.html#toc6" target="_blank" rel="external">运算符</a></p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.cnblogs.com/2050/archive/2012/08/17/2644189.html" target="_blank" rel="external">javascript中数据类型转换那些事</a></li>
+<li><a href="https://www.zhihu.com/question/29615998" target="_blank" rel="external">javascript: [] == ![]; // true 答案为什么会是true?</a></li>
+<li><a href="http://javascript.ruanyifeng.com/grammar/operator.html#toc6" target="_blank" rel="external">运算符</a></li>
+</ul>
 </blockquote>
 
       
@@ -533,15 +532,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript 基础</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript 基础 类型转换</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随想 前端生涯</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">javascript 基础 类型转换</a>
               </li>
             
             <div class="clearfix"></div>
