@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 随想 前端生涯 | Hexo</title>
+  <title>性能优化 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/随想-前端生涯/index.html">
+  <meta name="description" content="前言面试过程中，不可避免问到的一个问题就是，你对前端性能优化方面有什么了解？这是个非常宽泛的题目，由于我个人的语言组织能力不会很行，所以每次面试都把自己之前项目中做过的一些性能优化的东西提一下出来，但我个人觉得还是回答得非常表面，像是网上看了别人的博客里面有提及过这些东西，然后就把他们背过来抄一下一样，很难让面试官感到有耳目一新的感觉，所以我在这里对性能优化的各方面做一些总结，然后一些方便做成de">
+<meta name="keywords" content="前端进阶 性能优化 面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能优化">
+<meta property="og:url" content="http://yoursite.com/2017/08/14/performanceOptimitation/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言面试过程中，不可避免问到的一个问题就是，你对前端性能优化方面有什么了解？这是个非常宽泛的题目，由于我个人的语言组织能力不会很行，所以每次面试都把自己之前项目中做过的一些性能优化的东西提一下出来，但我个人觉得还是回答得非常表面，像是网上看了别人的博客里面有提及过这些东西，然后就把他们背过来抄一下一样，很难让面试官感到有耳目一新的感觉，所以我在这里对性能优化的各方面做一些总结，然后一些方便做成de">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2017-08-15T14:37:18.425Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="性能优化">
+<meta name="twitter:description" content="前言面试过程中，不可避免问到的一个问题就是，你对前端性能优化方面有什么了解？这是个非常宽泛的题目，由于我个人的语言组织能力不会很行，所以每次面试都把自己之前项目中做过的一些性能优化的东西提一下出来，但我个人觉得还是回答得非常表面，像是网上看了别人的博客里面有提及过这些东西，然后就把他们背过来抄一下一样，很难让面试官感到有耳目一新的感觉，所以我在这里对性能优化的各方面做一些总结，然后一些方便做成de">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,60 +155,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-performanceOptimitation" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/yza.github.com/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/yza.github.com/2017/08/12/demoOne/" class="archive-article-date">
-  	<time datetime="2017-08-12T03:18:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/yza.github.com/2017/08/12/demoOne/">工作一年后的反思</a>
+    <h1 class="article-title" itemprop="name">
+      性能优化
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/yza.github.com/2017/08/14/performanceOptimitation/" class="archive-article-date">
+  	<time datetime="2017-08-14T14:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>面试过程中，不可避免问到的一个问题就是，你对前端性能优化方面有什么了解？<br>这是个非常宽泛的题目，由于我个人的语言组织能力不会很行，所以每次面试都把自己之前项目中做过的一些性能优化的东西提一下出来，但我个人觉得还是回答得非常表面，像是网上看了别人的博客里面有提及过这些东西，然后就把他们背过来抄一下一样，很难让面试官感到有耳目一新的感觉，所以我在这里对性能优化的各方面做一些总结，然后一些方便做成demo的写到GitHub里面。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="网页性能"><a href="#网页性能" class="headerlink" title="网页性能"></a>网页性能</h2><p>网页生产的过程，大致可以分成五步</p>
+<ol>
+<li>HTML代码转化为DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一颗渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上<br>其中生成布局和绘制这两步需要的时间比较长。但在用户访问过程中，</li>
+</ol>
+<ul>
+<li>修改DOM</li>
+<li>修改样式表</li>
+<li>用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）<br>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。<br>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。<br>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。<blockquote>
+<p>降低浏览器重新渲染平率和成本</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><p>把DOM的多个读操作（或多个写操作）放一起。不要再两个读操作之间加入一个写操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">div.style.left = div.offsetLeft + 10 + &quot;px&quot;;</div><div class="line">div.style.top = div.offsetTop + 10 + &quot;px&quot;;</div><div class="line"></div><div class="line">// good</div><div class="line">var left = div.offsetLeft;</div><div class="line">var top  = div.offsetTop;</div><div class="line">div.style.left = left + 10 + &quot;px&quot;;</div><div class="line">div.style.top = top + 10 + &quot;px&quot;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。</p>
+</li>
+<li>不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。</li>
+<li>尽量使用离线DOM，而不是真实的网面DOM。(document fragment)</li>
+<li>先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染</li>
+<li>position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。</li>
+<li>只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。</li>
+<li>使用虚拟DOM的脚本库，比如React等。</li>
+<li>使用window.requestAnimationFrame()、window.requestIdleCallback()两个方法调节重新渲染。</li>
+</ol>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>光从纽约到悉尼一个往返需要的时间约是160ms，但这个只最理想情况下的结果，实际上由于种种限制，实际的RTT需要200~300ms。<br>CDN(Content Delivery Network，内容分发网络)最重要的作用就是通过把内容部署在全球各地，让用户从最近的服务器加载内容，大幅降低传播分组的时间。</p>
+<blockquote>
+<p>BAT都有提供CDN的服务，这个如果有需要服务全国甚至全球的用户，而且对访问速度有一定需求的可以使用CDN</p>
+</blockquote>
+<h2 id="请求合并"><a href="#请求合并" class="headerlink" title="请求合并"></a>请求合并</h2><h3 id="Sprite"><a href="#Sprite" class="headerlink" title="Sprite"></a>Sprite</h3><p>这个是我最早研究的一个性能优化的</p>
+<blockquote>
+<p>大多数网站性能的瓶颈都是延迟而不是带宽！</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="external">网页性能管理详解</a></li>
+<li><a href="http://www.cnblogs.com/chaoyuehedy/p/5758143.html" target="_blank" rel="external">使用HTML5的History API</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html" target="_blank" rel="external">如何让搜索引擎抓取AJAX内容</a></li>
+</ul>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随想 前端生涯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端进阶 性能优化 面试</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/14/performanceOptimitation/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/yza.github.com/2017/08/15/gobang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          gobang
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/yza.github.com/2017/08/13/converType/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">一道笔试题引起的数据类型转换的思考</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -226,9 +389,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

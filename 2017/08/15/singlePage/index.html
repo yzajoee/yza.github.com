@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 随想 前端生涯 | Hexo</title>
+  <title>单页面应用实现原理及SEO优化 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/随想-前端生涯/index.html">
+  <meta name="description" content="前言现在前端最流行的三个MVVM框架引领了SPA应用发展的趋势，单页面可以对前后端职能划分清楚，减轻服务负担。但单页面也有SEO搜索不友好的缺点。，这里就单页面应用的实现和优化作简单的介绍 单页面应用的实现单页面实现主要有以下几种实现方法1.url不改变，通过ajax获取页面后替换页面中的代码，但这种方法刷新页面后会丢失页面状态。2.带hash(#)型这种类型的优点就是刷新也不会丢失页面可以通过监">
+<meta name="keywords" content="单页面 seo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单页面应用实现原理及SEO优化">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/singlePage/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言现在前端最流行的三个MVVM框架引领了SPA应用发展的趋势，单页面可以对前后端职能划分清楚，减轻服务负担。但单页面也有SEO搜索不友好的缺点。，这里就单页面应用的实现和优化作简单的介绍 单页面应用的实现单页面实现主要有以下几种实现方法1.url不改变，通过ajax获取页面后替换页面中的代码，但这种方法刷新页面后会丢失页面状态。2.带hash(#)型这种类型的优点就是刷新也不会丢失页面可以通过监">
 <meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2017-08-15T14:08:23.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="单页面应用实现原理及SEO优化">
+<meta name="twitter:description" content="前言现在前端最流行的三个MVVM框架引领了SPA应用发展的趋势，单页面可以对前后端职能划分清楚，减轻服务负担。但单页面也有SEO搜索不友好的缺点。，这里就单页面应用的实现和优化作简单的介绍 单页面应用的实现单页面实现主要有以下几种实现方法1.url不改变，通过ajax获取页面后替换页面中的代码，但这种方法刷新页面后会丢失页面状态。2.带hash(#)型这种类型的优点就是刷新也不会丢失页面可以通过监">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,60 +155,180 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-singlePage" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/yza.github.com/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/yza.github.com/2017/08/12/demoOne/" class="archive-article-date">
-  	<time datetime="2017-08-12T03:18:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/yza.github.com/2017/08/12/demoOne/">工作一年后的反思</a>
+    <h1 class="article-title" itemprop="name">
+      单页面应用实现原理及SEO优化
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/yza.github.com/2017/08/15/singlePage/" class="archive-article-date">
+  	<time datetime="2017-08-15T13:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现在前端最流行的三个MVVM框架引领了SPA应用发展的趋势，单页面可以对前后端职能划分清楚，减轻服务负担。但单页面也有SEO搜索不友好的缺点。<br>，这里就单页面应用的实现和优化作简单的介绍</p>
+<h1 id="单页面应用的实现"><a href="#单页面应用的实现" class="headerlink" title="单页面应用的实现"></a>单页面应用的实现</h1><p>单页面实现主要有以下几种实现方法<br>1.url不改变，通过ajax获取页面后替换页面中的代码，但这种方法刷新页面后会丢失页面状态。<br>2.带hash(#)型<br>这种类型的优点就是刷新也不会丢失页面<br>可以通过监听url hash的变化去请求页面数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&apos;hashchange&apos;, function()&#123;</div><div class="line">    console.log(windwo.href.hash);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>3.无hash型<br>这种类型是通过html5的最新history api来实现的 能正常的回退前进，但这种办法刷新页面的时候也会丢失页面</p>
+<blockquote>
+<p>history.pushState(null, null, url)<br>history.pushState会更改浏览器的url，并把更改页面前的状态传入到history中，用户点击回退按钮可以返回pushState之前。<br>history.replaceState(state, title, url) //@state状态对象：记录历史记录点的额外对象@title页面标题：目前所有浏览器都不支持@url可选的url，不能跨域<br>history.replaceState的作用和pushState的作用相似，但不会把当前页面状态存储到history中，只是淡淡修改页面的url<br>history.state<br>当前history对象存储的state信息，如果当前URL不是通过pushState或history.replaceState产生的，那么history.state就等于null。<br>state只能存储能够序列化的对象（不可以存Date,Error,undefined等均不能序列化）<br>window.onpopstate时间<br>window.onpopstate时间主要是监听历史记录点，也就是说监听URL的变化，但会或略hash部分。<br>history.go和history.back（包括用户按浏览器历史前进后退按钮）触发并且页面无刷的时候（由于使用pushState修改了history）会触发popstate事件，事件发生时浏览器会从history中取出URL和对应的state对象替换当前的URL和history.state。通过event.state也可以获取history.state<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&apos;popstate&apos;,function()&#123;&#125;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h1><p>搜索引擎只会抓取费hash部分的内容，上面列举的三种方案中，第一种和第二种均对SEO不友好，搜索引擎无法抓取AJAX内容，也不会抓取#号，无法索引内容。<br>这里第三种方法实现的单页面可以支持SEO，但history API只支持IE10以上的浏览器，而且每一个url都是一个不同的请求，为了防止错误，要求服务器对所有这些请求都返回如下机构的页面，防止404错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">　　&lt;html&gt;</div><div class="line">　　　　&lt;body&gt;</div><div class="line">　　　　　　&lt;section id=&apos;container&apos;&gt;&lt;/section&gt;</div><div class="line">　　　　　　&lt;noscript&gt;</div><div class="line">　　　　　　　　... ...</div><div class="line"> 　　　　　　&lt;/noscript&gt;</div><div class="line">　　　　&lt;/body&gt;</div><div class="line">　　&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>我们把所有要让搜索引擎收录的内容，都放在noscript标签之中。这样的话，用户依然可以执行AJAX操作，不用刷新页面，但是搜索引擎会收录每个网页的主要内容！</p>
+<blockquote>
+<p>javascript脚本执行window.history.pushState和window.history.replaceState不会触发onpopstate事件。<br>参考文章：</p>
+<ul>
+<li><a href="http://www.mamicode.com/info-detail-1685806.html" target="_blank" rel="external">详解单页面路由的几种实现原理</a></li>
+<li><a href="http://www.cnblogs.com/chaoyuehedy/p/5758143.html" target="_blank" rel="external">使用HTML5的History API</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html" target="_blank" rel="external">如何让搜索引擎抓取AJAX内容</a></li>
+</ul>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随想 前端生涯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">单页面 seo</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/08/15/singlePage/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/yza.github.com/2017/08/15/gobang/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">gobang</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -226,9 +351,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

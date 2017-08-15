@@ -152,6 +152,287 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-singlePage" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yza.github.com/2017/08/15/singlePage/">单页面应用实现原理及SEO优化</a>
+    </h1>
+  
+
+        
+        <a href="/yza.github.com/2017/08/15/singlePage/" class="archive-article-date">
+  	<time datetime="2017-08-15T13:02:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现在前端最流行的三个MVVM框架引领了SPA应用发展的趋势，单页面可以对前后端职能划分清楚，减轻服务负担。但单页面也有SEO搜索不友好的缺点。<br>，这里就单页面应用的实现和优化作简单的介绍</p>
+<h1 id="单页面应用的实现"><a href="#单页面应用的实现" class="headerlink" title="单页面应用的实现"></a>单页面应用的实现</h1><p>单页面实现主要有以下几种实现方法<br>1.url不改变，通过ajax获取页面后替换页面中的代码，但这种方法刷新页面后会丢失页面状态。<br>2.带hash(#)型<br>这种类型的优点就是刷新也不会丢失页面<br>可以通过监听url hash的变化去请求页面数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&apos;hashchange&apos;, function()&#123;</div><div class="line">    console.log(windwo.href.hash);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>3.无hash型<br>这种类型是通过html5的最新history api来实现的 能正常的回退前进，但这种办法刷新页面的时候也会丢失页面</p>
+<blockquote>
+<p>history.pushState(null, null, url)<br>history.pushState会更改浏览器的url，并把更改页面前的状态传入到history中，用户点击回退按钮可以返回pushState之前。<br>history.replaceState(state, title, url) //@state状态对象：记录历史记录点的额外对象@title页面标题：目前所有浏览器都不支持@url可选的url，不能跨域<br>history.replaceState的作用和pushState的作用相似，但不会把当前页面状态存储到history中，只是淡淡修改页面的url<br>history.state<br>当前history对象存储的state信息，如果当前URL不是通过pushState或history.replaceState产生的，那么history.state就等于null。<br>state只能存储能够序列化的对象（不可以存Date,Error,undefined等均不能序列化）<br>window.onpopstate时间<br>window.onpopstate时间主要是监听历史记录点，也就是说监听URL的变化，但会或略hash部分。<br>history.go和history.back（包括用户按浏览器历史前进后退按钮）触发并且页面无刷的时候（由于使用pushState修改了history）会触发popstate事件，事件发生时浏览器会从history中取出URL和对应的state对象替换当前的URL和history.state。通过event.state也可以获取history.state<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&apos;popstate&apos;,function()&#123;&#125;);</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h1 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h1><p>搜索引擎只会抓取费hash部分的内容，上面列举的三种方案中，第一种和第二种均对SEO不友好，搜索引擎无法抓取AJAX内容，也不会抓取#号，无法索引内容。<br>这里第三种方法实现的单页面可以支持SEO，但history API只支持IE10以上的浏览器，而且每一个url都是一个不同的请求，为了防止错误，要求服务器对所有这些请求都返回如下机构的页面，防止404错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">　　&lt;html&gt;</div><div class="line">　　　　&lt;body&gt;</div><div class="line">　　　　　　&lt;section id=&apos;container&apos;&gt;&lt;/section&gt;</div><div class="line">　　　　　　&lt;noscript&gt;</div><div class="line">　　　　　　　　... ...</div><div class="line"> 　　　　　　&lt;/noscript&gt;</div><div class="line">　　　　&lt;/body&gt;</div><div class="line">　　&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>我们把所有要让搜索引擎收录的内容，都放在noscript标签之中。这样的话，用户依然可以执行AJAX操作，不用刷新页面，但是搜索引擎会收录每个网页的主要内容！</p>
+<blockquote>
+<p>javascript脚本执行window.history.pushState和window.history.replaceState不会触发onpopstate事件。<br>参考文章：</p>
+<ul>
+<li><a href="http://www.mamicode.com/info-detail-1685806.html" target="_blank" rel="external">详解单页面路由的几种实现原理</a></li>
+<li><a href="http://www.cnblogs.com/chaoyuehedy/p/5758143.html" target="_blank" rel="external">使用HTML5的History API</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html" target="_blank" rel="external">如何让搜索引擎抓取AJAX内容</a></li>
+</ul>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">单页面 seo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/yza.github.com/2017/08/15/singlePage/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-gobang" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yza.github.com/2017/08/15/gobang/">gobang</a>
+    </h1>
+  
+
+        
+        <a href="/yza.github.com/2017/08/15/gobang/" class="archive-article-date">
+  	<time datetime="2017-08-15T00:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>github里面总没有一个能拿得出手的例子，面个试都不能展示自己有多厉害，所以我决定自己捣弄一个五子棋的游戏，目标是打包成一个能在本地运行的APP。<br>技术选型上我使用react，顺便学习一下react的语法。</p>
+<h1 id="游戏规则"><a href="#游戏规则" class="headerlink" title="游戏规则"></a>游戏规则</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">demo react 游戏</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/yza.github.com/2017/08/15/gobang/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-performanceOptimitation" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/yza.github.com/2017/08/14/performanceOptimitation/">性能优化</a>
+    </h1>
+  
+
+        
+        <a href="/yza.github.com/2017/08/14/performanceOptimitation/" class="archive-article-date">
+  	<time datetime="2017-08-14T14:06:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>面试过程中，不可避免问到的一个问题就是，你对前端性能优化方面有什么了解？<br>这是个非常宽泛的题目，由于我个人的语言组织能力不会很行，所以每次面试都把自己之前项目中做过的一些性能优化的东西提一下出来，但我个人觉得还是回答得非常表面，像是网上看了别人的博客里面有提及过这些东西，然后就把他们背过来抄一下一样，很难让面试官感到有耳目一新的感觉，所以我在这里对性能优化的各方面做一些总结，然后一些方便做成demo的写到GitHub里面。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="网页性能"><a href="#网页性能" class="headerlink" title="网页性能"></a>网页性能</h2><p>网页生产的过程，大致可以分成五步</p>
+<ol>
+<li>HTML代码转化为DOM</li>
+<li>CSS代码转化成CSSOM（CSS Object Model）</li>
+<li>结合DOM和CSSOM，生成一颗渲染树（包含每个节点的视觉信息）</li>
+<li>生成布局（layout），即将所有渲染树的所有节点进行平面合成</li>
+<li>将布局绘制（paint）在屏幕上<br>其中生成布局和绘制这两步需要的时间比较长。但在用户访问过程中，</li>
+</ol>
+<ul>
+<li>修改DOM</li>
+<li>修改样式表</li>
+<li>用户事件（比如鼠标悬停、页面滚动、输入框键入文字、改变窗口大小等等）<br>重新渲染，就需要重新生成布局和重新绘制。前者叫做”重排”（reflow），后者叫做”重绘”（repaint）。<br>重排和重绘会不断触发，这是不可避免的。但是，它们非常耗费资源，是导致网页性能低下的根本原因。<br>提高网页性能，就是要降低”重排”和”重绘”的频率和成本，尽量少触发重新渲染。<blockquote>
+<p>降低浏览器重新渲染平率和成本</p>
+</blockquote>
+</li>
+</ul>
+<ol>
+<li><p>把DOM的多个读操作（或多个写操作）放一起。不要再两个读操作之间加入一个写操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// bad</div><div class="line">div.style.left = div.offsetLeft + 10 + &quot;px&quot;;</div><div class="line">div.style.top = div.offsetTop + 10 + &quot;px&quot;;</div><div class="line"></div><div class="line">// good</div><div class="line">var left = div.offsetLeft;</div><div class="line">var top  = div.offsetTop;</div><div class="line">div.style.left = left + 10 + &quot;px&quot;;</div><div class="line">div.style.top = top + 10 + &quot;px&quot;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果某个样式是通过重排得到的，那么最好缓存结果。避免下一次用到的时候，浏览器又要重排。</p>
+</li>
+<li>不要一条条地改变样式，而要通过改变class，或者csstext属性，一次性地改变样式。</li>
+<li>尽量使用离线DOM，而不是真实的网面DOM。(document fragment)</li>
+<li>先将元素设为display: none（需要1次重排和重绘），然后对这个节点进行100次操作，最后再恢复显示（需要1次重排和重绘）。这样一来，你就用两次重新渲染，取代了可能高达100次的重新渲染</li>
+<li>position属性为absolute或fixed的元素，重排的开销会比较小，因为不用考虑它对其他元素的影响。</li>
+<li>只在必要的时候，才将元素的display属性为可见，因为不可见的元素不影响重排和重绘。另外，visibility : hidden的元素只对重绘有影响，不影响重排。</li>
+<li>使用虚拟DOM的脚本库，比如React等。</li>
+<li>使用window.requestAnimationFrame()、window.requestIdleCallback()两个方法调节重新渲染。</li>
+</ol>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>光从纽约到悉尼一个往返需要的时间约是160ms，但这个只最理想情况下的结果，实际上由于种种限制，实际的RTT需要200~300ms。<br>CDN(Content Delivery Network，内容分发网络)最重要的作用就是通过把内容部署在全球各地，让用户从最近的服务器加载内容，大幅降低传播分组的时间。</p>
+<blockquote>
+<p>BAT都有提供CDN的服务，这个如果有需要服务全国甚至全球的用户，而且对访问速度有一定需求的可以使用CDN</p>
+</blockquote>
+<h2 id="请求合并"><a href="#请求合并" class="headerlink" title="请求合并"></a>请求合并</h2><h3 id="Sprite"><a href="#Sprite" class="headerlink" title="Sprite"></a>Sprite</h3><p>这个是我最早研究的一个性能优化的</p>
+<blockquote>
+<p>大多数网站性能的瓶颈都是延迟而不是带宽！</p>
+<p>参考文章：</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/09/web-page-performance-in-depth.html" target="_blank" rel="external">网页性能管理详解</a></li>
+<li><a href="http://www.cnblogs.com/chaoyuehedy/p/5758143.html" target="_blank" rel="external">使用HTML5的History API</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2013/07/how_to_make_search_engines_find_ajax_content.html" target="_blank" rel="external">如何让搜索引擎抓取AJAX内容</a></li>
+</ul>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端进阶 性能优化 面试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/yza.github.com/2017/08/14/performanceOptimitation/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-converType" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -399,11 +680,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随想 前端生涯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">demo react 游戏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端进阶 性能优化 面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript 基础 类型转换</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随想 前端生涯</a>
+                <a href="javascript:void(0)" class="js-tag color3">单页面 seo</a>
               </li>
             
             <div class="clearfix"></div>
